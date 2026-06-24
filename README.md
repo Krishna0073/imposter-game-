@@ -1,121 +1,154 @@
-import random
-import os
+# Imposter Word Game 🎭
 
-# ==========================
-# WORDS AND HINTS
-# ==========================
+A fun terminal-based multiplayer Imposter Word Game built with Python.
+
+## About the Game
+
+In this game, most players receive the same secret word, while one or more players are secretly chosen as imposters.
+
+The goal of the normal players is to identify the imposters through discussion.
+
+The goal of the imposters is to blend in without knowing the secret word. To help them slightly, they receive a hint related to the secret word.
+
+---
+
+## Features
+
+* Supports multiple players
+* Supports multiple imposters
+* Random secret word generation
+* Hint system for imposters
+* Hidden role reveal system
+* Secure player-by-player viewing
+* Discussion phase
+* Final imposter reveal
+* Easy to customize with your own words and hints
+
+---
+
+## How It Works
+
+1. Enter the number of players.
+2. Enter the number of imposters.
+3. Each player takes turns viewing their role.
+4. Normal players see the secret word.
+5. Imposters see:
+
+   * "YOU ARE THE IMPOSTER"
+   * A hint related to the secret word.
+6. After all players view their roles, a discussion round begins.
+7. Players try to identify the imposters.
+8. The game reveals the imposters and the secret word.
+
+---
+
+## Requirements
+
+* Python 3.x
+
+No external libraries are required.
+
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/imposter-word-game.git
+```
+
+Move into the project directory:
+
+```bash
+cd imposter-word-game
+```
+
+Run the game:
+
+```bash
+python imposter_game.py
+```
+
+---
+
+## Example Gameplay
+
+```text
+Enter number of players: 5
+Enter number of imposters: 1
+
+Player 1, take the device.
+Press ENTER to reveal your role...
+
+YOUR SECRET WORD IS:
+>>> Pizza <<<
+
+Press ENTER to hide your role...
+```
+
+Imposter View:
+
+```text
+YOU ARE THE IMPOSTER
+
+Hint: Food item
+```
+
+Final Reveal:
+
+```text
+IMPOSTER REVEALED
+
+Player 3 was an IMPOSTER!
+
+Secret Word: Pizza
+```
+
+---
+
+## Project Structure
+
+```text
+imposter-word-game/
+│
+├── imposter_game.py
+├── README.md
+└── LICENSE
+```
+
+---
+
+## Customizing Words
+
+Modify the `word_bank` dictionary inside the Python file:
+
+```python
 word_bank = {
     "Pizza": "Food item",
     "Tiger": "Wild animal",
-    "Football": "Popular sport",
-    "Laptop": "Electronic device",
-    "Beach": "Vacation place",
-    "Mountain": "Natural landform",
-    "Doctor": "Medical profession",
-    "Airplane": "Mode of transport",
-    "Chocolate": "Sweet treat",
-    "Library": "Place full of books",
-    "Cricket": "Outdoor sport",
-    "Elephant": "Large animal",
-    "School": "Place of learning",
-    "Camera": "Used for photography",
-    "Train": "Public transport"
+    "Football": "Popular sport"
 }
+```
 
+Add as many words and hints as you like.
 
-# ==========================
-# CLEAR SCREEN FUNCTION
-# ==========================
-def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
+---
 
+## Future Improvements
 
-# ==========================
-# GAME START
-# ==========================
-print("=" * 40)
-print("        IMPOSTER WORD GAME")
-print("=" * 40)
+* Graphical User Interface (Tkinter)
+* Mobile/Web Version
+* Difficulty Levels
+* Categories (Movies, Sports, Countries, etc.)
+* Timer-Based Discussion Round
+* Score Tracking System
+* Online Multiplayer Support
 
-num_players = int(input("Enter number of players: "))
-num_imposters = int(input("Enter number of imposters: "))
+---
 
-while num_imposters >= num_players:
-    print("\n❌ Number of imposters must be less than players.")
-    num_imposters = int(input("Enter number of imposters again: "))
+## Author
 
-# Select random word and hint
-word = random.choice(list(word_bank.keys()))
-hint = word_bank[word]
+Created as a fun Python mini-project for learning programming, game logic, loops, conditions, lists, and randomization.
 
-# Select random imposters
-imposters = random.sample(range(1, num_players + 1), num_imposters)
-
-clear_screen()
-
-# ==========================
-# SHOW ROLES TO PLAYERS
-# ==========================
-for player in range(1, num_players + 1):
-
-    print(f"\nPlayer {player}, take the device.")
-    input("Press ENTER to reveal your role...")
-
-    clear_screen()
-
-    print("=" * 40)
-
-    if player in imposters:
-        print("🚨 YOU ARE THE IMPOSTER 🚨")
-        print(f"\nHint: {hint}")
-    else:
-        print("✅ YOUR SECRET WORD IS:")
-        print(f"\n>>> {word} <<<")
-
-    print("=" * 40)
-
-    input("\nPress ENTER to hide your role...")
-
-    clear_screen()
-
-    if player != num_players:
-        print("Pass the device to the next player.")
-        input("Press ENTER when the next player is ready...")
-        clear_screen()
-
-# ==========================
-# DISCUSSION PHASE
-# ==========================
-print("=" * 40)
-print(" ALL PLAYERS HAVE SEEN THEIR ROLES ")
-print("=" * 40)
-
-input("\nPress ENTER to start the discussion round...")
-
-clear_screen()
-
-print("=" * 40)
-print(" DISCUSSION ROUND ")
-print("=" * 40)
-
-print("\nDiscuss among yourselves and find the imposters!")
-print("When you're ready, reveal the imposters.")
-
-input("\nPress ENTER to reveal the imposters...")
-
-clear_screen()
-
-# ==========================
-# REVEAL IMPOSTERS
-# ==========================
-print("=" * 40)
-print("      IMPOSTER REVEALED")
-print("=" * 40)
-
-for imposter in imposters:
-    print(f"🚨 Player {imposter} was an IMPOSTER!")
-
-print(f"\nSecret Word: {word}")
-
-print("\nThanks for playing!")
-print("=" * 40)
+Enjoy playing! 🎉
